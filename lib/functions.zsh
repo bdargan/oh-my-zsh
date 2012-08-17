@@ -15,3 +15,6 @@ function take() {
   cd $1
 }
 
+function spider() {
+  wget -E -k -K -p -nc --random-wait -r $@
+}
