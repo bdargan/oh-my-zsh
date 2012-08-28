@@ -9,7 +9,7 @@ function myip() {
 if [[ $('uname') == 'Linux' ]]; then
 	alias lsnrs='netstat -lnp | grep LISTEN'
 elif  [[ $('uname') == 'Darwin' ]]; then
-	alias='lsof -i -n -P | grep LISTEN'
+	alias lsnrs='lsof -i -n -P | grep LISTEN'
 fi
 
 
