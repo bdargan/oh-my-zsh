@@ -20,19 +20,19 @@ alias 7='cd +7'
 alias 8='cd +8'
 alias 9='cd +9'
 
-cd () {
-  if   [[ "x$*" == "x..." ]]; then
-    cd ../..
-  elif [[ "x$*" == "x...." ]]; then
-    cd ../../..
-  elif [[ "x$*" == "x....." ]]; then
-    cd ../../..
-  elif [[ "x$*" == "x......" ]]; then
-    cd ../../../..
-  else
-    builtin cd "$@"
-  fi
-}
+#cd () {
+#  if   [[ "x$*" == "x..." ]]; then
+#    cd ../..
+#  elif [[ "x$*" == "x...." ]]; then
+#    cd ../../..
+#  elif [[ "x$*" == "x....." ]]; then
+#    cd ../../..
+#  elif [[ "x$*" == "x......" ]]; then
+#    cd ../../../..
+#  else
+#    builtin cd "$@"
+#  fi
+#}
 
 alias md='mkdir -p'
 alias rd=rmdir
@@ -41,4 +41,24 @@ alias d='dirs -v | head -10'
 # mkdir & cd to it
 function mcd() { 
   mkdir -p "$1" && cd "$1"; 
+}
+
+alias lb='ls -fld ./**/*(d`stat +device .`OL[1,10])'
+
+#function , not working
+function chpwd; {
+    DIRECTORY="$PWD"
+    while true; do
+        if [ -f './.env.rc' ]; then
+            source './.env.rc'
+            break
+        fi
+        if [ -f './env' ]; then
+            source './env'
+            break
+        fi
+        [ $PWD = '/' ] && break
+        cd -q ..
+    done
+    cd -q "$DIRECTORY"
 }

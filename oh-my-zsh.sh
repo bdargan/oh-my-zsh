@@ -19,7 +19,6 @@ if [[ -z "$ZSH_CUSTOM" ]]; then
     ZSH_CUSTOM="$ZSH/custom"
 fi
 
-
 is_plugin() {
   local base_dir=$1
   local name=$2
