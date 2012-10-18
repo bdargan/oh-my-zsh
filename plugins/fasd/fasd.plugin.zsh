@@ -9,5 +9,7 @@ if [ $commands[fasd] ]; then # check if fasd is installed
   unalias z
   unalias zz
 
+else 
+  echo "fasd not installed"
 fi
 
