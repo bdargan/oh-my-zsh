@@ -19,5 +19,7 @@ alias lsa='ls -lah'
 alias l='ls -la'
 alias ll='ls -l'
 
-alias afind='ack-grep -il'
+#alias ack='ack-grep -il';
+
+alias ltmux="if tmux has; then tmux attach; else tmux new; fi"
 
