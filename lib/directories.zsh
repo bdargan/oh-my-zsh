@@ -20,19 +20,19 @@ alias 7='cd +7'
 alias 8='cd +8'
 alias 9='cd +9'
 
-#cd () {
-#  if   [[ "x$*" == "x..." ]]; then
-#    cd ../..
-#  elif [[ "x$*" == "x...." ]]; then
-#    cd ../../..
-#  elif [[ "x$*" == "x....." ]]; then
-#    cd ../../..
-#  elif [[ "x$*" == "x......" ]]; then
-#    cd ../../../..
-#  else
-#    builtin cd "$@"
-#  fi
-#}
+cd () {
+  if   [[ "x$*" == "x..." ]]; then
+    cd ../..
+  elif [[ "x$*" == "x...." ]]; then
+    cd ../../..
+  elif [[ "x$*" == "x....." ]]; then
+    cd ../../..
+  elif [[ "x$*" == "x......" ]]; then
+    cd ../../../..
+  else
+    builtin cd "$@"
+  fi
+}
 
 alias md='mkdir -p'
 alias rd=rmdir
@@ -43,9 +43,10 @@ function mcd() {
   mkdir -p "$1" && cd "$1"; 
 }
 
+zmodload zsh/stat
 alias lb='ls -fld ./**/*(d`stat +device .`OL[1,10])'
 
-#function , not working
+#function , works on osx
 function chpwd; {
     DIRECTORY="$PWD"
     while true; do
@@ -57,7 +58,7 @@ function chpwd; {
             source './env'
             break
         fi
-        [ $PWD = '/' ] && break
+#        [ $PWD = '/' ] && break
         cd -q ..
     done
     cd -q "$DIRECTORY"
