@@ -29,6 +29,12 @@ cd () {
     cd ../../..
   elif [[ "x$*" == "x......" ]]; then
     cd ../../../..
+  elif [ -f './.env.rc' ]; then
+    source './.env.rc'
+    break
+  elif [ -f './.env' ]; then
+    source './.env'
+    break
   else
     builtin cd "$@"
   fi
@@ -46,20 +52,3 @@ function mcd() {
 zmodload zsh/stat
 alias lb='ls -fld ./**/*(d`stat +device .`OL[1,10])'
 
-#function , works on osx
-function chpwd; {
-    DIRECTORY="$PWD"
-    while true; do
-        if [ -f './.env.rc' ]; then
-            source './.env.rc'
-            break
-        fi
-        if [ -f './env' ]; then
-            source './env'
-            break
-        fi
-#        [ $PWD = '/' ] && break
-        cd -q ..
-    done
-    cd -q "$DIRECTORY"
-}
