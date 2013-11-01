@@ -1,4 +1,4 @@
-b# Sublime Text 2 Aliases
+# Sublime Text 2 Aliases
 
 local _sublime_darwin_paths > /dev/null 2>&1
 _sublime_darwin_paths=(
