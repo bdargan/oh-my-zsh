@@ -1,5 +1,5 @@
 if [ $commands[fasd] ]; then # check if fasd is installed
-  fasd_cache="$HOME/.fasd-init-cache"
+  fasd_cache="${ZSH_CACHE_DIR}/fasd-init-cache"
   if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
     fasd --init auto >| "$fasd_cache"
   fi
@@ -10,11 +10,10 @@ if [ $commands[fasd] ]; then # check if fasd is installed
   alias j='fasd_cd -d'
   alias jj='fasd_cd -di'
 
-  #undo alias 
+  #undo alias
   unalias z
   unalias zz
 
-else 
+else
   echo "fasd not installed"
 fi
-

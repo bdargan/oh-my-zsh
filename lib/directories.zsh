@@ -1,16 +1,14 @@
 # Changing/making/removing directory
-setopt auto_name_dirs
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
 
-alias ..='cd ..'
-alias cd..='cd ..'
-alias cd...='cd ../..'
-alias cd....='cd ../../..'
-alias cd.....='cd ../../../..'
-alias cd/='cd /'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
 
+alias -- -='cd -'
 alias 1='cd -'
 alias 2='cd -2'
 alias 3='cd -3'
@@ -21,32 +19,16 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 
-cd () {
-  if   [[ "x$*" == "x..." ]]; then
-    cd ../..
-  elif [[ "x$*" == "x...." ]]; then
-    cd ../../..
-  elif [[ "x$*" == "x....." ]]; then
-    cd ../../../..
-  elif [ -f './.env.rc' ]; then
-    source './.env.rc'
-    break
-  elif [ -f './.env' ]; then
-    source './.env'
-    break
-  else
-    builtin cd "$@"
-  fi
-}
-
 alias md='mkdir -p'
 alias rd=rmdir
-alias d='dirs -v | head -$NUMLINES'
+alias d='dirs -v | head -10'
 
-# mkdir & cd to it
-function mcd() {
-  mkdir -p "$1" && cd "$1";
-}
+# List directory contents
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
 
-zmodload zsh/stat
-alias lb='ls -fld ./**/*(d`stat +device .`OL[1,10])'
+# Push and pop directories on directory stack
+alias pu='pushd'
+alias po='popd'
