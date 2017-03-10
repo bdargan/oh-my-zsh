@@ -35,7 +35,6 @@ for config_file ($ZSH/lib/*.zsh); do
 done
 
 
->>>>>>> b908feebcfb0ca8a9a80360d177e716c24c317d6
 is_plugin() {
   local base_dir=$1
   local name=$2
