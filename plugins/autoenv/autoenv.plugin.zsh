@@ -1,7 +1,8 @@
 # Activates autoenv or reports its failure
 () {
 if ! type autoenv_init >/dev/null; then
-  for d (~/.autoenv ~/.local/bin /usr/local/opt/autoenv /usr/local/bin); do
+  BREW_INSTALL="$(brew --prefix autoenv)"
+  for d ( $BREW_INSTALL ~/.autoenv ~/.local/bin /usr/local/opt/autoenv /usr/local/bin); do
     if [[ -e $d/activate.sh ]]; then
       autoenv_dir=$d
       break
